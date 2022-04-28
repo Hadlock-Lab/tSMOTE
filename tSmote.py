@@ -681,6 +681,37 @@ def imputeMixed(data,tBins,tSliceSyn,nf=25,nb=25,nFix=0,nSubSamp=100,sig=1,K=0, 
     return valsOut
 
 
+def imputeMeanTimeSlices(data,tPoints,tSliceSyn):
+    # impute based on the mean of each slice
+    dataNew=np.zeros(shape=(len(data),len(tSliceSyn), len(data[0][0])))
+    for i in range(len(data)):
+        bins=tPoints[i]
+        samp=np.array(data[i])
+    for j in range(len(tSliceSyn)):
+        if j+1 in bins:
+            I=bins.index(j+1)
+            dataNew[i,j,:]=samp[I]
+        elif j+1 not in bins:
+            dataNew[i,j,:]=np.array(tSliceSyn[j]).mean(axis=0)
+    return dataNew.tolist()
+
+
+def imputeMedianTimeSlices(data,tPoints,tSliceSyn):
+    # impute based on the median of each slice
+    dataNew=np.zeros(shape=(len(data),len(tSliceSyn), len(data[0][0])))
+    for i in range(len(data)):
+        bins=tPoints[i]
+        samp=np.array(data[i])
+    for j in range(len(tSliceSyn)):
+        if j+1 in bins:
+            I=bins.index(j+1)
+            dataNew[i,j,:]=samp[I]
+        elif j+1 not in bins:
+        dataNew[i,j,:]=np.median(np.array(tSliceSyn[j]),axis=0)
+    return dataNew.tolist()
+        
+                   
+
 
 def timesToBins(times, inTime, outTime):
   #gives bins corresponding to different time points
