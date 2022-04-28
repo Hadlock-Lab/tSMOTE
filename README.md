@@ -9,4 +9,5 @@ It is presented as a suite of functions meant to be used in succession. The main
 
 The jupyter notebook 2D_Oscillator_tsmote.ipynb has the code used for the 2D oscillator example in the paper. It can be treated as a tutorial for tSMOTE usage and visualizaiton. I apologize in advance since the model as written is rather messy, but the tSMOTE usage steps should be clear. For any questions please open an issue or contact andrew.baumgartner@isbscience.org
 
-
+## Dependencies
+See the preamble in both tSmote.py and 2D_Oscillators_tSmote.ipynb for a full list of dependencies.
